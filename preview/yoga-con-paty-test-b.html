@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yoga con Paty — Test B Visual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+
+    /* ============================================================
+       TOKENS — Test B "Lila Cálido"
+       ============================================================ */
+    :root {
+      --dark:          #2D1F4E;
+      --lila:          #7A55B8;
+      --lila-hover:    #5C3D96;
+      --lila-nav:      #C5B0E8;
+      --lila-on-dark:  #EDE5F8;
+      --bg-base:       #FAF7FF;
+      --bg-white:      #FFFFFF;
+      --bg-soft:       #EDE8F5;
+      --bg-mid:        #E4DCEF;
+      --text-main:     #2D1F4E;
+      --text-mid:      #4A3B6B;
+      --text-soft:     #6B5A80;
+      --border:        #DDD5EC;
+      --font-h:        'Playfair Display', Georgia, serif;
+      --font-b:        'DM Sans', system-ui, sans-serif;
+      --r-card:        16px;
+      --r-btn:         8px;
+      --shadow:        0 2px 16px rgba(44,36,64,.06);
+      --shadow-h:      0 8px 28px rgba(122,85,184,.12);
+      --section-v:     96px;
+      --container:     1120px;
+    }
+
+    /* ============================================================
+       RESET + BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-b);
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--text-main);
+      background: var(--bg-base);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-h);
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+    h1 { font-size: clamp(36px, 5vw, 54px); font-weight: 700; line-height: 1.15; }
+    h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; }
+    h3 { font-size: clamp(18px, 2vw, 22px); font-weight: 600; line-height: 1.3; }
+
+    p { color: var(--text-mid); }
+
+    a { text-decoration: none; }
+
+    em { font-style: italic; }
+
+    /* ============================================================
+       LAYOUT
+       ============================================================ */
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section { padding: var(--section-v) 0; }
+
+    .section-header { margin-bottom: 56px; }
+    .section-header.center { text-align: center; }
+    .section-header h2 { margin-top: 12px; }
+
+    .section-label {
+      font-family: var(--font-b);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--lila);
+      display: block;
+    }
+
+    .section-lead {
+      margin-top: 14px;
+      font-size: 18px;
+      max-width: 520px;
+    }
+    .center .section-lead { margin-left: auto; margin-right: auto; }
+
+    /* ============================================================
+       BOTONES
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-b);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: var(--r-btn);
+      padding: 14px 30px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+
+    /* primario — lila sobre claro */
+    .btn-primary {
+      background: var(--lila);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--lila-hover); }
+
+    /* secundario — outline */
+    .btn-secondary {
+      background: transparent;
+      color: var(--lila);
+      border: 1.5px solid var(--lila);
+      padding: 13px 29px;
+    }
+    .btn-secondary:hover { background: var(--bg-soft); }
+
+    /* header — claro sobre oscuro */
+    .btn-header {
+      background: var(--lila-on-dark);
+      color: var(--dark);
+      padding: 10px 22px;
+      font-size: 12px;
+    }
+    .btn-header:hover { background: #fff; }
+
+    /* CTA sección oscura — claro grande */
+    .btn-cta-light {
+      display: block;
+      width: 100%;
+      background: var(--lila-on-dark);
+      color: var(--dark);
+      padding: 16px 32px;
+      font-size: 14px;
+      text-align: center;
+      border-radius: var(--r-btn);
+      font-family: var(--font-b);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background .2s;
+    }
+    .btn-cta-light:hover { background: #fff; }
+
+    /* ============================================================
+       CARDS
+       ============================================================ */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-card);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-h);
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: var(--bg-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .card-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--lila);
+    }
+
+    .card h3 { margin-bottom: 10px; }
+    .card p { font-size: 15px; line-height: 1.65; color: var(--text-mid); }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--dark);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      gap: 24px;
+    }
+
+    .logo {
+      font-family: var(--font-h);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--lila-on-dark);
+      flex-shrink: 0;
+    }
+    .logo em { font-weight: 400; }
+
+    .nav { display: flex; gap: 4px; list-style: none; }
+    .nav a {
+      font-family: var(--font-b);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--lila-on-dark);
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: color .15s;
+      opacity: 0.85;
+    }
+    .nav a:hover { color: var(--lila-nav); opacity: 1; }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      background: var(--bg-base);
+      padding: 80px 0 100px;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 64px;
+    }
+
+    .hero-label {
+      font-family: var(--font-b);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--lila);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--lila);
+      flex-shrink: 0;
+    }
+
+    .hero h1 { margin-bottom: 22px; }
+    .hero h1 em { color: var(--lila); }
+
+    .hero-lead {
+      font-size: 18px;
+      color: var(--text-mid);
+      margin-bottom: 36px;
+      max-width: 430px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .hero-proof {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-family: var(--font-b);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-soft);
+    }
+    .hero-proof strong { color: var(--text-main); font-weight: 600; }
+    .dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--border);
+      display: inline-block;
+    }
+
+    /* Hero visual — placeholder foto */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-photo {
+      width: 400px;
+      height: 480px;
+      border-radius: 200px 200px 160px 160px;
+      background: linear-gradient(145deg, var(--bg-soft) 0%, var(--bg-mid) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .monogram {
+      font-family: var(--font-h);
+      font-style: italic;
+      font-size: 110px;
+      font-weight: 400;
+      color: var(--lila);
+      opacity: 0.22;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .photo-label {
+      position: absolute;
+      bottom: 24px;
+      font-family: var(--font-b);
+      font-size: 12px;
+      color: var(--text-soft);
+      letter-spacing: 0.04em;
+    }
+
+    /* Decoración */
+    .deco-dots {
+      position: absolute;
+      top: 32px;
+      right: -12px;
+      display: grid;
+      grid-template-columns: repeat(4, 8px);
+      gap: 10px;
+    }
+    .deco-dots span {
+      display: block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .deco-ring {
+      position: absolute;
+      bottom: 56px;
+      left: -4px;
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+    }
+
+    /* ============================================================
+       BENEFICIOS
+       ============================================================ */
+    .benefits { background: var(--bg-white); }
+
+    /* ============================================================
+       SOBRE PATY
+       ============================================================ */
+    .about { background: var(--bg-soft); }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-photo-wrap { position: relative; }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 180px 180px 140px 140px;
+      background: linear-gradient(155deg, var(--bg-white) 0%, var(--bg-mid) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .about-photo .monogram { font-size: 90px; opacity: 0.18; }
+
+    .about-badge {
+      position: absolute;
+      bottom: -14px;
+      right: -14px;
+      background: var(--dark);
+      color: var(--lila-on-dark);
+      font-family: var(--font-b);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .about-badge strong {
+      display: block;
+      font-family: var(--font-h);
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .about-text h2 { margin: 12px 0 20px; }
+    .about-text p { margin-bottom: 16px; }
+
+    .link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-b);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--lila);
+      margin-top: 8px;
+      transition: gap .2s;
+    }
+    .link-arrow:hover { gap: 10px; }
+
+    /* ============================================================
+       TESTIMONIOS
+       ============================================================ */
+    .testimonials { background: var(--bg-white); }
+
+    .testimonial-card { display: flex; flex-direction: column; }
+
+    .stars {
+      color: var(--lila);
+      font-size: 15px;
+      letter-spacing: 3px;
+      margin-bottom: 16px;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-mid);
+      flex: 1;
+      margin-bottom: 24px;
+    }
+
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--bg-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-h);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--lila);
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-family: var(--font-b);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 0;
+    }
+
+    .author-detail {
+      font-family: var(--font-b);
+      font-size: 12px;
+      color: var(--text-soft);
+      margin: 2px 0 0;
+    }
+
+    /* ============================================================
+       CTA MEMBRESÍA
+       ============================================================ */
+    .cta-section { background: var(--dark); }
+
+    .cta-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .cta-text h2 {
+      color: var(--lila-on-dark);
+      margin: 12px 0 18px;
+    }
+    .cta-text p { color: var(--lila-nav); font-size: 18px; }
+    .cta-text .section-label { color: var(--lila-nav); }
+
+    .cta-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(237,229,248,.14);
+      border-radius: var(--r-card);
+      padding: 36px 32px;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-b);
+      font-size: 15px;
+      color: var(--lila-on-dark);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(237,229,248,.1);
+    }
+    .feature-list li:last-child { border-bottom: none; }
+    .feature-list svg { flex-shrink: 0; }
+
+    .cta-subtext {
+      font-family: var(--font-b);
+      font-size: 12px;
+      color: var(--lila-nav);
+      text-align: center;
+      margin-top: 12px;
+      opacity: 0.7;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(237,229,248,.1);
+      padding: 28px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-h);
+      font-size: 15px;
+      color: var(--lila-on-dark);
+      opacity: 0.6;
+      margin: 0;
+    }
+
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-family: var(--font-b);
+      font-size: 13px;
+      color: var(--text-soft);
+      transition: color .15s;
+    }
+    .footer-links a:hover { color: var(--lila-on-dark); }
+
+    .footer-copy {
+      font-family: var(--font-b);
+      font-size: 13px;
+      color: var(--text-soft);
+      margin: 0;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 900px) {
+      :root { --section-v: 64px; }
+
+      .nav { display: none; }
+
+      .hero-inner,
+      .about-inner,
+      .cta-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+      }
+
+      .hero-label, .hero-ctas, .hero-proof { justify-content: center; }
+      .hero-lead { max-width: 100%; }
+      .hero-label::before { display: none; }
+
+      .hero-photo { width: 280px; height: 340px; margin: 0 auto; }
+      .deco-dots, .deco-ring { display: none; }
+
+      .cards-grid { grid-template-columns: 1fr; }
+
+      .about-photo-wrap { max-width: 260px; margin: 0 auto; }
+      .about-text { text-align: left; }
+
+      .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { width: 100%; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ==============================
+       HEADER
+       ============================== -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+
+        <a href="#" class="logo">Yoga con <em>Paty</em></a>
+
+        <nav class="nav">
+          <a href="#">Inicio</a>
+          <a href="#">Clases</a>
+          <a href="#">Sobre Paty</a>
+          <a href="#">Blog</a>
+        </nav>
+
+        <a href="#membresia" class="btn btn-header">Unirme</a>
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ==============================
+       HERO
+       ============================== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+
+        <div class="hero-text">
+          <p class="hero-label">Yoga · Meditación · Bienestar</p>
+          <h1>Encuentra tu calma.<br><em>Vuelve a tu cuerpo.</em></h1>
+          <p class="hero-lead">Clases de yoga en español para mujeres que buscan algo más que flexibilidad. Un espacio para respirar, conectar y cuidarte con intención.</p>
+          <div class="hero-ctas">
+            <a href="#clases" class="btn btn-primary">Explorar clases</a>
+            <a href="#membresia" class="btn btn-secondary">Ver membresía</a>
+          </div>
+          <div class="hero-proof">
+            <span><strong>+800</strong> alumnas</span>
+            <span class="dot"></span>
+            <span><strong>5 años</strong> de práctica</span>
+            <span class="dot"></span>
+            <span><strong>★ 4.9</strong> de valoración</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-photo">
+            <span class="monogram">P</span>
+            <p class="photo-label">Foto de Paty</p>
+          </div>
+          <div class="deco-dots">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="deco-ring"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       BENEFICIOS / CÓMO FUNCIONA
+       ============================== -->
+  <section class="section benefits" id="clases">
+    <div class="container">
+
+      <div class="section-header center">
+        <p class="section-label">Cómo funciona</p>
+        <h2>Tu práctica, a tu ritmo</h2>
+        <p class="section-lead">Aquí no hay competencia ni espejo. Solo tú, tu respiración y el espacio para moverte sin presión.</p>
+      </div>
+
+      <div class="cards-grid">
+
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="6" r="3"/>
+              <path d="M6 20c0-3.5 2.5-6 6-6s6 2.5 6 6"/>
+              <path d="M3 20h18"/>
+            </svg>
+          </div>
+          <h3>Para todos los niveles</h3>
+          <p>Desde tu primer saludo al sol hasta secuencias más desafiantes. Cada clase tiene modificaciones para que siempre encuentres tu versión.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <h3>Acceso cuando tú quieras</h3>
+          <p>Sin horarios fijos. Practica a las 6 de la mañana o a las 10 de la noche. Tu membresía te da acceso completo cuando lo necesites.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3>Una comunidad que te entiende</h3>
+          <p>Alumnas de toda Latinoamérica y España practicando juntas, compartiendo avances y apoyándose en el camino.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       SOBRE PATY
+       ============================== -->
+  <section class="section about">
+    <div class="container">
+      <div class="about-inner">
+
+        <div class="about-photo-wrap">
+          <div class="about-photo">
+            <span class="monogram">P</span>
+          </div>
+          <div class="about-badge">
+            <strong>+10</strong>
+            años practicando
+          </div>
+        </div>
+
+        <div class="about-text">
+          <p class="section-label">Sobre mí</p>
+          <h2>Hola, soy Paty</h2>
+          <p>Llevo más de diez años practicando yoga y cinco enseñándolo. Empecé porque lo necesitaba — para salir de la cabeza y volver al cuerpo. Y me quedé porque descubrí que era exactamente lo que otras mujeres también necesitaban.</p>
+          <p>Mis clases no son perfectas ni acrobáticas. Son honestas, cálidas y para personas reales con vidas reales. No necesitas tocar los pies ni tener experiencia previa. Solo necesitas ganas de empezar.</p>
+          <a href="#" class="link-arrow">Conocer mi historia →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       TESTIMONIOS
+       ============================== -->
+  <section class="section testimonials">
+    <div class="container">
+
+      <div class="section-header center">
+        <p class="section-label">Lo que dicen mis alumnas</p>
+        <h2>Ellas ya empezaron</h2>
+      </div>
+
+      <div class="cards-grid">
+
+        <div class="card testimonial-card">
+          <p class="stars">★★★★★</p>
+          <p class="quote">"Paty tiene ese don de hacerte sentir que estás lista, aunque lleves toda la vida creyendo que el yoga no era para ti."</p>
+          <div class="author">
+            <div class="avatar">S</div>
+            <div>
+              <p class="author-name">Sofía M.</p>
+              <p class="author-detail">Alumna desde 2022 · 42 años</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card testimonial-card">
+          <p class="stars">★★★★★</p>
+          <p class="quote">"Llevo un año con la membresía y es la primera vez en mi vida que sostengo un hábito de movimiento. La forma en que explica cambia todo."</p>
+          <div class="author">
+            <div class="avatar">C</div>
+            <div>
+              <p class="author-name">Carmen R.</p>
+              <p class="author-detail">Alumna desde 2023 · 38 años</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card testimonial-card">
+          <p class="stars">★★★★★</p>
+          <p class="quote">"La comunidad me sorprendió. Pensaba que iba a estar sola con las grabaciones, pero hay algo muy especial en saber que otras hacen el mismo camino."</p>
+          <div class="author">
+            <div class="avatar">L</div>
+            <div>
+              <p class="author-name">Laura T.</p>
+              <p class="author-detail">Alumna desde 2022 · 51 años</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       CTA MEMBRESÍA
+       ============================== -->
+  <section class="section cta-section" id="membresia">
+    <div class="container">
+      <div class="cta-inner">
+
+        <div class="cta-text">
+          <p class="section-label light">Membresía</p>
+          <h2>Empieza hoy.<br>Sin presión,<br>sin perfección.</h2>
+          <p>Acceso completo a todas las clases, nuevas sesiones cada semana, y una comunidad que te recibe como eres.</p>
+        </div>
+
+        <div class="cta-card">
+          <ul class="feature-list">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="9" stroke="#7A55B8" stroke-width="1.5"/>
+                <path d="M6 10l3 3 5-5" stroke="#7A55B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Más de 200 clases disponibles desde el día 1
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="9" stroke="#7A55B8" stroke-width="1.5"/>
+                <path d="M6 10l3 3 5-5" stroke="#7A55B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Nuevas clases cada semana
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="9" stroke="#7A55B8" stroke-width="1.5"/>
+                <path d="M6 10l3 3 5-5" stroke="#7A55B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Comunidad privada de alumnas
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="9" stroke="#7A55B8" stroke-width="1.5"/>
+                <path d="M6 10l3 3 5-5" stroke="#7A55B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Acceso desde cualquier dispositivo
+            </li>
+          </ul>
+          <a href="#" class="btn btn-cta-light">Quiero empezar →</a>
+          <p class="cta-subtext">7 días de prueba gratuita · Sin permanencia</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       FOOTER
+       ============================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-logo">Yoga con Paty</p>
+        <div class="footer-links">
+          <a href="#">Aviso legal</a>
+          <a href="#">Privacidad</a>
+          <a href="#">Contacto</a>
+        </div>
+        <p class="footer-copy">© 2025 Yoga con Paty</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
