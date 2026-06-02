@@ -1,0 +1,376 @@
+/*
+ * ================================================================
+ * YOGA CON PATY — Test B "Lila Cálido"
+ * CSS adicional para Astra → Apariencia → Personalizar → CSS adicional
+ *
+ * ANTES DE PEGAR:
+ * 1. Carga las fuentes en Astra → Personalizar → Tipografía global:
+ *    - Encabezados (H1–H6): Playfair Display
+ *    - Cuerpo:              DM Sans
+ * 2. Pega TODO este archivo en el campo "CSS adicional"
+ * 3. Publica y comprueba en escritorio, tablet y móvil
+ * 4. NO tocar la sección de Header de Astra
+ *
+ * Secciones:
+ *   A. Tokens de color (variables CSS)
+ *   B. Tipografía de respaldo
+ *   C. Botones (Spectra + WooCommerce)
+ *   D. Secciones / fondos
+ *   E. Spectra — Info Box (cards de beneficios)
+ *   F. Spectra — Advanced Heading
+ *   G. WooCommerce — productos y checkout
+ *   H. Utilidades responsive
+ * ================================================================
+ */
+
+
+/* ================================================================
+   A. TOKENS DE COLOR
+   ================================================================ */
+:root {
+  --ycp-dark:         #2D1F4E;
+  --ycp-lila:         #7A55B8;
+  --ycp-lila-hover:   #5C3D96;
+  --ycp-lila-nav:     #C5B0E8;
+  --ycp-lila-light:   #EDE5F8;
+  --ycp-bg-base:      #FAF7FF;
+  --ycp-bg-white:     #FFFFFF;
+  --ycp-bg-soft:      #EDE8F5;
+  --ycp-text-main:    #2D1F4E;
+  --ycp-text-mid:     #4A3B6B;
+  --ycp-text-soft:    #6B5A80;
+  --ycp-border:       #EDE8F5;
+  --ycp-r-btn:        10px;
+  --ycp-r-card:       10px;
+  --ycp-shadow:       0 2px 16px rgba(44, 36, 64, .06);
+  --ycp-shadow-h:     0 8px 28px rgba(122, 85, 184, .12);
+}
+
+
+/* ================================================================
+   B. TIPOGRAFÍA DE RESPALDO
+   Si no puedes configurar las fuentes desde Astra Personalizar,
+   descomenta el bloque @import y las reglas de font-family.
+   ================================================================ */
+
+/*
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,600&display=swap');
+
+body,
+body p,
+body li,
+.entry-content p,
+.entry-content li {
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+.entry-content h1,
+.entry-content h2,
+.entry-content h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--ycp-dark);
+}
+*/
+
+
+/* ================================================================
+   C. BOTONES — Spectra + WooCommerce
+   Sin mayúsculas, border-radius 10px, colores Test B
+   ================================================================ */
+
+/* Todos los botones Spectra (Advanced Buttons) */
+.uagb-button__link,
+.wp-block-uagb-buttons-child a {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  border-radius: var(--ycp-r-btn) !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  padding: 14px 28px !important;
+  transition: background-color .2s, color .2s, border-color .2s !important;
+}
+
+/* Botón primario: lila sólido */
+.uagb-button__link.uagb-button__link-0 {
+  background-color: var(--ycp-lila) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.uagb-button__link.uagb-button__link-0:hover {
+  background-color: var(--ycp-lila-hover) !important;
+}
+
+/* Botón secundario: outline */
+.uagb-button__link.uagb-button__link-1 {
+  background: transparent !important;
+  color: var(--ycp-lila) !important;
+  border: 1.5px solid var(--ycp-lila) !important;
+}
+.uagb-button__link.uagb-button__link-1:hover {
+  background-color: var(--ycp-bg-soft) !important;
+}
+
+/* Botón sobre fondo oscuro: claro */
+.uagb-button__link.uagb-button__link-light {
+  background-color: var(--ycp-lila-light) !important;
+  color: var(--ycp-dark) !important;
+  border: none !important;
+}
+.uagb-button__link.uagb-button__link-light:hover {
+  background-color: #fff !important;
+}
+
+/* Botones WooCommerce */
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce .single_add_to_cart_button,
+.woocommerce-cart .wc-proceed-to-checkout a,
+.woocommerce .checkout-button {
+  background-color: var(--ycp-lila) !important;
+  color: #fff !important;
+  border-radius: var(--ycp-r-btn) !important;
+  text-transform: none !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  padding: 14px 28px !important;
+  letter-spacing: 0 !important;
+  transition: background-color .2s !important;
+}
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce .single_add_to_cart_button:hover,
+.woocommerce-cart .wc-proceed-to-checkout a:hover {
+  background-color: var(--ycp-lila-hover) !important;
+  color: #fff !important;
+}
+
+/* Botón secundario WooCommerce */
+.woocommerce a.button.alt,
+.woocommerce button.button.alt {
+  background-color: transparent !important;
+  color: var(--ycp-lila) !important;
+  border: 1.5px solid var(--ycp-lila) !important;
+}
+.woocommerce a.button.alt:hover,
+.woocommerce button.button.alt:hover {
+  background-color: var(--ycp-bg-soft) !important;
+}
+
+
+/* ================================================================
+   D. SECCIONES / FONDOS
+   Alterna manualmente el fondo en cada bloque Group/Container
+   desde Spectra. Esta sección cubre overrides globales de color.
+   ================================================================ */
+
+/* Fondo base del body y página */
+body,
+.hfeed,
+.ast-container {
+  background-color: var(--ycp-bg-base) !important;
+}
+
+/* Color del cuerpo de texto */
+body,
+.entry-content p,
+p {
+  color: var(--ycp-text-mid);
+}
+
+/* Links en texto */
+.entry-content a:not(.btn):not(.button):not(.uagb-button__link) {
+  color: var(--ycp-lila);
+  transition: color .15s;
+}
+.entry-content a:not(.btn):not(.button):not(.uagb-button__link):hover {
+  color: var(--ycp-lila-hover);
+}
+
+/* Scroll suave global */
+html { scroll-behavior: smooth; }
+
+
+/* ================================================================
+   E. SPECTRA — Info Box (cards de beneficios)
+   ================================================================ */
+
+/* Card base */
+.uagb-info-box-wrap {
+  background-color: var(--ycp-bg-white) !important;
+  border: 1px solid var(--ycp-border) !important;
+  border-radius: var(--ycp-r-card) !important;
+  box-shadow: var(--ycp-shadow) !important;
+  transition: box-shadow .25s, transform .25s !important;
+}
+.uagb-info-box-wrap:hover {
+  box-shadow: var(--ycp-shadow-h) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Ícono del Info Box */
+.uagb-info-box-icon-wrap .uagb-icon svg,
+.uagb-info-box-icon-wrap svg {
+  color: var(--ycp-lila) !important;
+  stroke: var(--ycp-lila) !important;
+  fill: none !important;
+}
+
+/* Título de la card */
+.uagb-info-box-title {
+  font-family: 'DM Sans', sans-serif !important;
+  font-weight: 600 !important;
+  color: var(--ycp-dark) !important;
+}
+
+/* Texto de la card */
+.uagb-info-box-desc {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 14px !important;
+  color: var(--ycp-text-mid) !important;
+}
+
+
+/* ================================================================
+   F. SPECTRA — Advanced Heading
+   ================================================================ */
+
+/* Labels de sección (etiqueta P con estilo de badge) */
+/* Añade la clase CSS "section-label" al bloque en Spectra → Avanzado → Clases CSS */
+.section-label,
+.uagb-heading-text p.section-label {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  color: var(--ycp-lila) !important;
+}
+
+/* Títulos H2 */
+.uagb-heading-text h2 {
+  font-family: 'Playfair Display', serif !important;
+  color: var(--ycp-dark) !important;
+  font-weight: 700 !important;
+}
+
+/* Segunda línea del hero (etiqueta DIV, Playfair italic, lila) */
+/* Añade la clase CSS "hero-line2" al bloque en Spectra → Avanzado → Clases CSS */
+.hero-line2,
+.uagb-heading-text .hero-line2 {
+  font-family: 'Playfair Display', serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  color: var(--ycp-lila) !important;
+}
+
+
+/* ================================================================
+   G. WOOCOMMERCE — productos, carrito y checkout
+   ================================================================ */
+
+/* Precio del producto */
+.woocommerce .price,
+.woocommerce .woocommerce-Price-amount {
+  color: var(--ycp-dark) !important;
+  font-family: 'Playfair Display', serif !important;
+}
+
+/* Precio con descuento tachado */
+.woocommerce del .woocommerce-Price-amount {
+  color: var(--ycp-text-soft) !important;
+  opacity: .7;
+}
+
+/* Precio destacado (en la card de plan anual) */
+.woocommerce ins .woocommerce-Price-amount {
+  color: var(--ycp-lila) !important;
+  font-weight: 700;
+}
+
+/* Formulario de checkout: inputs */
+.woocommerce form .input-text,
+.woocommerce form input[type="text"],
+.woocommerce form input[type="email"] {
+  border: 1px solid var(--ycp-border) !important;
+  border-radius: var(--ycp-r-card) !important;
+  font-family: 'DM Sans', sans-serif !important;
+  color: var(--ycp-text-mid) !important;
+  padding: 12px 16px !important;
+}
+.woocommerce form .input-text:focus,
+.woocommerce form input[type="text"]:focus,
+.woocommerce form input[type="email"]:focus {
+  border-color: var(--ycp-lila) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(122, 85, 184, .12) !important;
+}
+
+
+/* ================================================================
+   H. UTILIDADES RESPONSIVE
+   ================================================================ */
+
+/* En mobile, ocultar el menú de nav de Astra si hay burger */
+@media (max-width: 900px) {
+  /* Reducir padding de secciones en tablet */
+  .uagb-columns-gap--custom {
+    gap: 24px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Botones al 100% de ancho en mobile */
+  .uagb-button__link {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Reducir tamaño de fuente base */
+  body { font-size: 16px !important; }
+}
+
+
+/* ================================================================
+   GUÍA DE USO — RESUMEN
+   ================================================================
+
+   FONDOS DE CADA SECCIÓN (asignar manualmente en Spectra):
+
+   Sección 1 — Hero:                 #FAF7FF
+   Sección 2 — Argumentos:           #FFFFFF  (border-top: 1px solid #EDE8F5)
+   Sección 3 — Membresía fundadora:  #FAF7FF  (id="membresia")
+   Sección 4 — Sobre Paty:           #EDE8F5
+   Sección 5 — Testimonios:          #FFFFFF
+   Sección 6 — Cursos iniciales:     #FAF7FF
+   Sección 7 — CTA final:            #2D1F4E  (texto sobre fondo oscuro)
+
+   BOTONES:
+   - Primario:    Fondo #7A55B8, texto #FFFFFF
+   - Secundario:  Borde 1.5px #7A55B8, texto #7A55B8, fondo transparente
+   - Sobre oscuro: Fondo #EDE5F8, texto #2D1F4E
+   - Hover primario:  #5C3D96
+   - Border-radius:   10px
+   - Font:            DM Sans 600, sin mayúsculas
+
+   PLAN ANUAL (card oscura):
+   - Fondo:    #2D1F4E
+   - Texto:    #EDE5F8  (títulos), #E8E0F4 (lista)
+   - Subtexto: #C4B5E0
+   - Botón:    Fondo #EDE5F8, texto #2D1F4E
+
+   TIPOGRAFÍA:
+   - H1–H3:   Playfair Display
+   - Cuerpo:  DM Sans
+   - Labels:  DM Sans 600, 11px, 0.15em, uppercase
+   - H1:      58px desktop / 40px mobile
+   - H2:      40px desktop / 30px mobile
+   - H3:      17–19px, DM Sans 600
+
+   LINKS WooCommerce:
+   - Mensual fundador: ID 2632 → /checkout/?add-to-cart=2632
+   - Anual fundador:   ID 2635 → /checkout/?add-to-cart=2635
+   ================================================================
+*/
